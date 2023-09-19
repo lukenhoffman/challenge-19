@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff"> <!-- Address bar color for some mobile browsers -->
     <title>Offline Text Editor</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="root\client\src\assets\apple-touch-icon-180x180.png"> 
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -34,11 +37,14 @@
         }
     </style>
 </head>
+
 <body>
     <div id="editor-container">
+        <label for="editor" class="sr-only">Text Editor</label> <!-- Added label for accessibility -->
         <textarea id="editor" placeholder="Start typing your notes..."></textarea>
     </div>
 
     <script src="bundle.js"></script>
 </body>
+
 </html>

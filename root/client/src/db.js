@@ -14,22 +14,41 @@ const openDB = () => {
 
     request.onupgradeneeded = (event) => {
       let db = event.target.result;
-      db.createObjectStore("notes", { keyPath: "id" });
+      if (!db.objectStoreNames.contains("notes")) {
+        db.createObjectStore("notes", { keyPath: "id" });
+      }
     };
   });
 };
 
-const saveNote = async (noteContent) => {
+export const saveNote = async (noteContent) => {
   const db = await openDB();
   const tx = db.transaction("notes", "readwrite");
   const store = tx.objectStore("notes");
   store.put({ id: 1, content: noteContent });
-  return tx.complete;
+
+  return new Promise((resolve, reject) => {
+    tx.oncomplete = () => {
+      resolve();
+    };
+    tx.onerror = () => {
+      reject("Error writing note");
+    };
+  });
 };
 
-const getNote = async () => {
+export const getNote = async () => {
   const db = await openDB();
   const tx = db.transaction("notes", "readonly");
   const store = tx.objectStore("notes");
-  return store.get(1);
+  const request = store.get(1);
+
+  return new Promise((resolve, reject) => {
+    request.onsuccess = () => {
+      resolve(request.result);
+    };
+    request.onerror = () => {
+      reject("Error retrieving note");
+    };
+  });
 };

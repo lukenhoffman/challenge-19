@@ -2,6 +2,8 @@ import { skipWaiting, clientsClaim } from 'workbox-core';
 import { precacheAndRoute } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
 import { StaleWhileRevalidate, CacheFirst } from 'workbox-strategies';
+import { ExpirationPlugin } from 'workbox-expiration';
+
 
 // Ensure the service worker takes over the client as soon as it's activated
 skipWaiting();
@@ -32,4 +34,4 @@ registerRoute(
     })
 );
 
-// You can add more caching strategies based on your needs, e.g., for fonts or API calls.
+
