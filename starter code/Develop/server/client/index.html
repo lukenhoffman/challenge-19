@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>J.A.T.E</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/theme/monokai.min.css">
+  </head>
+
+  <body>
+    <header>
+      <nav id="navbar">
+        <div class="nav-btn">
+          <a class="btn btn-sm btn-dark" id="buttonInstall" role="button">Install!</a>
+        </div>
+        <h1>Just Another Text Editor</h1>
+        <div class="navbar-brand">
+          <img src="../starter-code/Develop/server/client/src/images/logo.png" alt="J.A.T.E Logo" />
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <!-- CodeMirror Textarea -->
+      <section>
+        <textarea id="code-editor"></textarea>
+      </section>
+
+      <!-- Loader -->
+      <section class="loading-container">
+        <div class="loading-spinner"></div>
+      </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/mode/javascript/javascript.min.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var editor = CodeMirror.fromTextArea(document.getElementById("code-editor"), {
+                lineNumbers: true,
+                mode: "javascript",
+                theme: "monokai"
+            });
+        });
+    </script>
+  </body>
+</html>
